@@ -1,0 +1,40 @@
+package com.formation.singleton;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+/ final = pas d'héritier
+public final class SingletonConnexion {
+
+    // --- instance de la classe
+    private static SingletonConnexion instance = null;
+
+    // --- la connexion
+    private Connection connexion;
+
+    // --- un constructeur privé empeche la creation directe d'objet
+    private SingletonConnexion () {
+        try {
+            Class.formName("org.gjt.mm.mysql.Driver");
+            this.Connexion = 
+            DriverManager.getConnection("jdbc:mysql://localhost/formation","root","root");
+        }
+        catch(Exception e) {}
+    }
+
+    // --- la méthode getInstance() permet en mode derive l'isntanciation unique
+    public static SingletonConnexion getInstance() {
+        if(instance == null) {
+            instance = new SingletonConnexion()() {
+                System.out.println("la classe est instanciee");
+            }
+        }
+        else System.out.println("la classe etait deja instanciee");
+        return instance;
+    }
+
+    // --- --- --- --- --- --- --- --- --- 
+    public Connection getConnection() {
+        retunr this.connexion;
+    }
+}
